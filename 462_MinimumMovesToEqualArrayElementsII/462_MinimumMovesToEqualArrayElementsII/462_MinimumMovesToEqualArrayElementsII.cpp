@@ -27,6 +27,7 @@ Constraints:
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 
 class Solution {
@@ -37,7 +38,8 @@ public:
     {
         int iOutput;
         //--.
-        iOutput = getAverage( nums );
+        iOutput = getMedian( nums );
+        
         //--.
         viewResult( nums, iOutput );
     }
@@ -45,31 +47,29 @@ public:
 
 private:
     //--.
-    int getAverage( std::vector<int>& nums )
+    int getMedian(std::vector<int>& nums)
     {
-        int iAverageValue = 0;
+        std::sort( nums.begin(), nums.end() );
+        //--.
+        int iMedian = nums[nums.size() / 2];
         int iMoves = 0;
         //--.
-        for( int i = 0; i < nums.size(); i++ )
-            iAverageValue += nums[i];
+        for( int num : nums )
+            iMoves += abs(num - iMedian);
         //--.
-        iAverageValue /= (int)nums.size();
-
-        //--.
-        for (int i = 0; i < nums.size(); i++)
-            iMoves += abs(iAverageValue - nums[i]);
-
         return iMoves;
     }
 
     //--.
-    void viewResult(std::vector<int>& vIn, int iAverageValue)
+    void viewResult( std::vector<int>& vIn, int iAverageValue )
     {
+        int i;
         //--.
         printf("\n Input: nums = [ ");
-        for (int i = 0; i < vIn.size(); i++)
-            printf("%d, ", vIn[i]);
-        printf("] \n");
+        
+        for( i = 0; i < vIn.size()-1; i++)
+            printf("%d, ", vIn[i]);        
+        printf("%d ] \n", vIn[i]);
 
         //--.
         printf(" Output: %d \n", iAverageValue);
@@ -91,7 +91,12 @@ int main()
     //02.
     std::vector<int> v2 = { 1,10,2,9 };
     sln.minMoves2(v2);
-    
+
+    //03.
+    std::vector<int> v3 = { 1,10,16,2,9 };
+    sln.minMoves2(v3);
+
+
     //--.
     return 0;
 }
