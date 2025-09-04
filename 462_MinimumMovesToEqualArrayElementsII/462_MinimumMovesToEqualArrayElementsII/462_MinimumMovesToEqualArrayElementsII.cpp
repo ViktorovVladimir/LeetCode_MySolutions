@@ -34,14 +34,22 @@ class Solution {
 public:
     
     //--.
-    void minMoves2( std::vector<int>& nums )
+    int minMoves2( std::vector<int>& nums )
     {
-        int iOutput;
+        if( nums.size() == 0 || nums.size() > 105 )
+            return 0;
+
+        for( int num : nums )
+            if (num < -109 || num > 109)
+                return 0;
+
         //--.
-        iOutput = getMedian( nums );
+        int iOutput = getMedian( nums );
         
         //--.
         viewResult( nums, iOutput );
+
+        return 1;
     }
 
 
@@ -63,7 +71,7 @@ private:
     //--.
     void viewResult( const std::vector<int>& vIn, int iAverageValue )
     {
-        int i;
+        size_t i;
         //--.
         std::cout <<"\n Input: nums = [ " ;
         
