@@ -26,9 +26,73 @@ Constraints:
 
 
 #include <iostream>
+#include <vector>
 
+
+class Solution {
+public:
+    
+    //--.
+    void minMoves2( std::vector<int>& nums )
+    {
+        int iOutput;
+        //--.
+        iOutput = getAverage( nums );
+        //--.
+        viewResult( nums, iOutput );
+    }
+
+
+private:
+    //--.
+    int getAverage( std::vector<int>& nums )
+    {
+        int iAverageValue = 0;
+        int iMoves = 0;
+        //--.
+        for( int i = 0; i < nums.size(); i++ )
+            iAverageValue += nums[i];
+        //--.
+        iAverageValue /= (int)nums.size();
+
+        //--.
+        for (int i = 0; i < nums.size(); i++)
+            iMoves += abs(iAverageValue - nums[i]);
+
+        return iMoves;
+    }
+
+    //--.
+    void viewResult(std::vector<int>& vIn, int iAverageValue)
+    {
+        //--.
+        printf("\n Input: nums = [ ");
+        for (int i = 0; i < vIn.size(); i++)
+            printf("%d, ", vIn[i]);
+        printf("] \n");
+
+        //--.
+        printf(" Output: %d \n", iAverageValue);
+    }
+
+};
+
+
+//-----------------------------------------------------------
+//--.
 int main()
 {
-    std::cout << "Hello World!\n";
+    Solution sln;
+    
+    //01.
+    std::vector<int> v1 = { 1,2,3 };
+    sln.minMoves2(v1);
+
+    //02.
+    std::vector<int> v2 = { 1,10,2,9 };
+    sln.minMoves2(v2);
+    
+    //--.
+    return 0;
 }
 
