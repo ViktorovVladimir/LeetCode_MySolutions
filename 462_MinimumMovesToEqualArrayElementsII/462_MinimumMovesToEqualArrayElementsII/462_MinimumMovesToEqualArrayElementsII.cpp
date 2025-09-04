@@ -61,18 +61,18 @@ private:
     }
 
     //--.
-    void viewResult( std::vector<int>& vIn, int iAverageValue )
+    void viewResult( const std::vector<int>& vIn, int iAverageValue )
     {
         int i;
         //--.
-        printf("\n Input: nums = [ ");
+        std::cout <<"\n Input: nums = [ " ;
         
         for( i = 0; i < vIn.size()-1; i++)
-            printf("%d, ", vIn[i]);        
-        printf("%d ] \n", vIn[i]);
+            std::cout << vIn[i] << ", ";
+        std::cout << vIn[i] << " ] " << std::endl;
 
         //--.
-        printf(" Output: %d \n", iAverageValue);
+        std::cout << " Output: " << iAverageValue << std::endl;
     }
 
 };
